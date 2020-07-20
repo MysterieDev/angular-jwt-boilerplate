@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, tap, share } from 'rxjs/operators';
 import * as moment from 'moment';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  LoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
@@ -13,8 +15,8 @@ export class AuthService {
 
     return this.http
       .post<LoginResult>('/auth/login', {
-        username: 'john12',
-        password: 'My_Admin1',
+        username,
+        password,
       })
       .pipe(shareReplay());
   }
@@ -24,19 +26,17 @@ export class AuthService {
 
     localStorage.setItem('id_token', authResult.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    this.LoggedInSubject.next(true);
   }
 
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.LoggedInSubject.next(false);
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
+    this.LoggedInSubject.next(moment().isBefore(this.getExpiration()));
   }
 
   getExpiration() {
