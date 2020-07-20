@@ -12,9 +12,10 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login() {
-    console.log('works');
     this.authService
       .login(this.model.username, this.model.password)
-      .subscribe((data) => console.log(data));
+      .toPromise()
+      .then((res) => this.authService.setSession(res))
+      .catch((err) => console.log(err));
   }
 }
