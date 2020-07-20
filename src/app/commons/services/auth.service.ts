@@ -7,9 +7,9 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    return this.http.post<unknown>('localhost:3000/auth/login', {
-      username,
-      password,
+    return this.http.post<unknown>('/auth/login', {
+      username: 'john12',
+      password: 'My_Admin1',
     });
   }
 }

@@ -11,11 +11,10 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) {}
 
-  async login() {
+  login() {
     console.log('works');
     this.authService
       .login(this.model.username, this.model.password)
-      .toPromise()
-      .then((res) => console.log(res));
+      .subscribe((data) => console.log(data));
   }
 }
