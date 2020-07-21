@@ -1,1 +1,7 @@
-<h1 class="ui header">Welcome to the App {{ username }}</h1>
+<div class="ui two column centered grid">
+  <div class="column">
+    <div class="ui raised segment" *ngIf="username">
+      <h2>Welcome back, {{ username }}</h2>
+    </div>
+  </div>
+</div>
