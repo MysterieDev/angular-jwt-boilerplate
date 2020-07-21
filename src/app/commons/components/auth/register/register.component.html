@@ -1,31 +1,120 @@
 <div class="ui centered grid">
   <div class="two column centered row">
     <div class="column">
-      <form class="ui form">
-        <div class="field">
-          <label>UserName</label>
-          <input type="text" name="first-name" placeholder="username" />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input type="text" name="last-name" placeholder="email" />
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" name="last-name" />
-        </div>
-        <div class="field">
-          <label>Confirm Password</label>
-          <input type="password" name="last-name" />
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" tabindex="0" class="hidden" />
-            <label>I agree to the Terms and Conditions</label>
+      <form
+        class="ui form"
+        id="login"
+        (ngSubmit)="f.form.valid && register()"
+        #f="ngForm"
+        [mustMatch]="['password', 'confirmPassword']"
+        novalidate
+      >
+        <div
+          class="field"
+          [ngClass]="{ error: username.dirty && username.invalid }"
+        >
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            #username="ngModel"
+            [(ngModel)]="model.username"
+            required
+            minlength="4"
+            maxlength="20"
+          />
+          <div *ngIf="username.invalid && (username.dirty || username.touched)">
+            <p *ngIf="username.errors.required">
+              Name is required.
+            </p>
+            <p *ngIf="username.errors.minlength">
+              Name must be at least 4 characters long.
+            </p>
+            <p *ngIf="username.errors.maxlength">
+              Name must be at max 20 characters long.
+            </p>
           </div>
         </div>
-        <button class="ui button" type="submit">Submit</button>
+        <div
+          class="field"
+          [ngClass]="{ error: username.dirty && username.invalid }"
+        >
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            #email="ngModel"
+            [(ngModel)]="model.email"
+            required
+          />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <p *ngIf="email.errors.required">
+              Email is required.
+            </p>
+          </div>
+        </div>
+        <div
+          class="field"
+          [ngClass]="{ error: password.dirty && password.invalid }"
+        >
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            [(ngModel)]="model.password"
+            required
+            minlength="6"
+            maxlength="20"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <p *ngIf="password.errors.required">
+              Password is required.
+            </p>
+            <p *ngIf="password.errors.minlength">
+              Password has to be at least 6 characters long
+            </p>
+          </div>
+        </div>
+        <div class="field" [ngClass]="{ error: confirmPassword.invalid }">
+          <label>Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="password"
+            [(ngModel)]="model.confirmPassword"
+            required
+            #confirmPassword="ngModel"
+          />
+          <div
+            *ngIf="
+              confirmPassword.invalid &&
+              (confirmPassword.dirty || confirmPassword.touched)
+            "
+          >
+            <p *ngIf="confirmPassword.errors.required">
+              This field is required.
+            </p>
+            <p *ngIf="f.submitted && confirmPassword.invalid">
+              Passwords must match
+            </p>
+          </div>
+        </div>
+
+        <button
+          class="ui button"
+          [ngClass]="{ positive: f.valid }"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
+      <div class="ui compact error message" *ngIf="f.invalid && f.submitted">
+        <p>Please fill out or correct the remaining fields</p>
+      </div>
     </div>
   </div>
 </div>

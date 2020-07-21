@@ -11,14 +11,24 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    console.log(username, password);
-
     return this.http
       .post<LoginResult>('/auth/login', {
         username,
         password,
       })
       .pipe(shareReplay());
+  }
+
+  registerUser(username, email, password) {
+    console.log(username, email, password);
+
+    return this.http
+      .post<RegisterResult>('/auth/signup', {
+        username,
+        email,
+        password,
+      })
+      .pipe(share());
   }
 
   public setSession(authResult: LoginResult) {
@@ -49,4 +59,9 @@ export class AuthService {
 interface LoginResult {
   access_token: string;
   expiresIn: string;
+}
+
+interface RegisterResult {
+  username: string;
+  email: string;
 }

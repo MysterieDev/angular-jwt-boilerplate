@@ -8,6 +8,7 @@ import { FooterComponent } from './commons/components/footer/footer.component';
 import { LoginComponent } from './commons/components/auth/login/login.component';
 import { RegisterComponent } from './commons/components/auth/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { MustMatchDirective } from './commons/components/directives/must-match.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    MustMatchDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
