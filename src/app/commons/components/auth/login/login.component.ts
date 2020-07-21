@@ -17,7 +17,7 @@ export class LoginComponent {
       .login(this.model.username, this.model.password)
       .toPromise()
       .then((res) => this.authService.setSession(res))
-      .then((_) => this.router.navigateByUrl('/'))
+      .then((_) => this.router.navigateByUrl('/profile'))
       .catch((err) => {
         console.log(err);
         this.router.navigateByUrl('/login');

@@ -12,7 +12,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http
-      .post<LoginResult>('/auth/login', {
+      .post<LoginResult>('/api/auth/login', {
         username,
         password,
       })
@@ -23,7 +23,7 @@ export class AuthService {
     console.log(username, email, password);
 
     return this.http
-      .post<RegisterResult>('/auth/signup', {
+      .post<RegisterResult>('/api/auth/signup', {
         username,
         email,
         password,

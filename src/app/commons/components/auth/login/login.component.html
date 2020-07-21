@@ -58,6 +58,9 @@
           Submit
         </button>
       </form>
+      <div class="ui compact error message" *ngIf="f.invalid && f.submitted">
+        <p>Please fill out or correct the remaining fields</p>
+      </div>
     </div>
   </div>
 </div>
