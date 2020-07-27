@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService, LoginResult } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { pipe, Subscription } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   model: any = {};
-
+  isLoggedIn$;
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.isLoggedIn$ = this.authService.LoggedInSubject;
+  }
 
   login() {
     this.authService
       .login(this.model.username, this.model.password)
-      .toPromise()
-      .then((res) => this.authService.setSession(res))
-      .then((_) => this.router.navigateByUrl('/profile'))
-      .catch((err) => {
-        console.log(err);
-        this.router.navigateByUrl('/login');
-      });
+      .subscribe((res) => console.log(res));
   }
 }

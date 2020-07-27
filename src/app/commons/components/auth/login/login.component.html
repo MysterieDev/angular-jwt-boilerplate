@@ -54,8 +54,9 @@
           class="ui button"
           [ngClass]="{ success: f.valid }"
           type="submit"
+          [disabled]="isLoggedIn$ | async"
         >
-          Submit
+          {{ (isLoggedIn$ | async) ? "Already logged in " : "Submit" }}
         </button>
       </form>
       <div class="ui compact error message" *ngIf="f.invalid && f.submitted">

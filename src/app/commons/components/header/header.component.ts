@@ -6,24 +6,17 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  isLoggedIn: boolean = false;
+export class HeaderComponent implements OnInit {
+  isLoggedIn$;
 
   constructor(private authservice: AuthService) {}
 
   ngOnInit() {
-    this.authservice.LoggedInSubject.subscribe(
-      (res) => (this.isLoggedIn = res)
-    );
+    this.isLoggedIn$ = this.authservice.LoggedInSubject;
     this.authservice.isLoggedIn();
-  }
-
-  ngOnDestroy() {
-    this.authservice.LoggedInSubject.unsubscribe();
   }
 
   logout() {
     this.authservice.logout();
-    this.isLoggedIn = false;
   }
 }

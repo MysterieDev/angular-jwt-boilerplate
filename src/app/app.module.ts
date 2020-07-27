@@ -10,6 +10,7 @@ import { RegisterComponent } from './commons/components/auth/register/register.c
 import { FormsModule } from '@angular/forms';
 import { MustMatchDirective } from './commons/components/directives/must-match.directive';
 import { ProfileModule } from './profile/profile.module';
+import { HomeComponent } from './commons/components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { ProfileModule } from './profile/profile.module';
     LoginComponent,
     RegisterComponent,
     MustMatchDirective,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

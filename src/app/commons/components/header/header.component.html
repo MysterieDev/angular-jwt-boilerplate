@@ -1,14 +1,38 @@
 <div class="ui secondary pointing menu">
-  <a class="active item" routerLink="/">
+  <a class="ui item" routerLink="/home" routerLinkActive="active">
     Home
   </a>
+  <a
+    class="ui item"
+    routerLink="/profile"
+    *ngIf="(isLoggedIn$ | async) == true"
+    routerLinkActive="active"
+  >
+    Profile
+  </a>
   <div class="right menu">
-    <a class="ui item" routerLink="/login" *ngIf="!isLoggedIn">
+    <a
+      class="ui item"
+      routerLink="/login"
+      *ngIf="(isLoggedIn$ | async) == false"
+      routerLinkActive="active"
+    >
       Login
     </a>
-    <a class="ui item" routerLink="/register" *ngIf="!isLoggedIn">
+    <a
+      class="ui item"
+      routerLink="/register"
+      *ngIf="(isLoggedIn$ | async) == false"
+      routerLinkActive="active"
+    >
       Register
     </a>
-    <a class="ui item" (click)="logout()" *ngIf="isLoggedIn">Logout</a>
+    <a
+      class="ui item"
+      (click)="logout()"
+      *ngIf="(isLoggedIn$ | async) == true"
+      routerLinkActive="active"
+      >Logout</a
+    >
   </div>
 </div>

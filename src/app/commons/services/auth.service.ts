@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { shareReplay, tap, share } from 'rxjs/operators';
+import { share, tap, catchError } from 'rxjs/operators';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   LoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
     return this.http
@@ -16,7 +17,10 @@ export class AuthService {
         username,
         password,
       })
-      .pipe(shareReplay());
+      .pipe(
+        tap((authResult) => this.setSession(authResult)),
+        tap((res) => this.isLoggedIn())
+      );
   }
 
   registerUser(username, email, password) {
@@ -43,10 +47,13 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.LoggedInSubject.next(false);
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn() {
-    this.LoggedInSubject.next(moment().isBefore(this.getExpiration()));
+    const result: boolean = moment().isBefore(this.getExpiration());
+    this.LoggedInSubject.next(result);
+    return result;
   }
 
   getExpiration() {
@@ -56,7 +63,7 @@ export class AuthService {
   }
 }
 
-interface LoginResult {
+export interface LoginResult {
   access_token: string;
   expiresIn: string;
 }
