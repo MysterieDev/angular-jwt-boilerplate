@@ -4,11 +4,12 @@ import { LoginComponent } from './commons/components/auth/login/login.component'
 import { RegisterComponent } from './commons/components/auth/register/register.component';
 import { ProfileComponent } from './profile/components/profile/profile.component';
 import { HomeComponent } from './commons/components/home/home.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

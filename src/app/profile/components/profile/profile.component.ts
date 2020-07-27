@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.LoggedInSubject;
     this.authService.isLoggedIn();
+
     if (localStorage.getItem('id_token')) {
       const tokenObj: any = jwt_decode(localStorage.getItem('id_token'));
       this.username = tokenObj.username;
