@@ -5,9 +5,10 @@ import { RegisterComponent } from './commons/components/auth/register/register.c
 import { ProfileComponent } from './profile/components/profile/profile.component';
 import { HomeComponent } from './commons/components/home/home.component';
 import { AuthGuard } from './auth.guard';
+import { LoginGuard } from './login.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
