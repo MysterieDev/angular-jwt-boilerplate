@@ -1,7 +1,13 @@
-<div class="ui two column centered grid">
+<div class="ui column centered grid">
   <div class="column" *ngIf="userinfo">
     <div class="ui raised segment" *ngIf="userinfo.username">
       <h2>Welcome back, {{ userinfo.username }}</h2>
+    </div>
+
+    <div class="ui raised segment" *ngIf="userinfo.username">
+      <h2>
+        You can perform actions authorized by the role {{ userinfo.role }}
+      </h2>
     </div>
   </div>
 </div>
