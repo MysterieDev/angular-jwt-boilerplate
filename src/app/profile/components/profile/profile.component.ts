@@ -3,6 +3,7 @@ import * as jwt_decode from 'jwt-decode';
 import { AuthService } from '../../../commons/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -10,12 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
   userinfo: UserInfo;
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit(): void {
-    this.http
-      .get<UserInfo>('api/user/info')
-      .subscribe((res) => (this.userinfo = res));
+    this.profileService.getUserInfo().subscribe((res) => (this.userinfo = res));
   }
 }
 

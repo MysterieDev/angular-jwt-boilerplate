@@ -34,5 +34,11 @@
       routerLinkActive="active"
       >Logout</a
     >
+    <a
+      class="ui item"
+      *ngIf="(isLoggedIn$ | async) == true && (role$ | async) === 'ADMIN'"
+      routerLinkActive="active"
+      >Admin</a
+    >
   </div>
 </div>

@@ -8,12 +8,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn$;
+  role$;
 
   constructor(private authservice: AuthService) {}
 
   ngOnInit() {
     this.isLoggedIn$ = this.authservice.LoggedInSubject;
+    this.role$ = this.authservice.RoleSubject;
+
+    //Fill Subjects with new Values
     this.authservice.isLoggedIn();
+    this.authservice.getRole();
   }
 
   logout() {
