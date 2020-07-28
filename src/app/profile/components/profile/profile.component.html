@@ -1,13 +1,9 @@
 <div class="ui column centered grid">
   <div class="column" *ngIf="userinfo">
-    <div class="ui raised segment" *ngIf="userinfo.username">
-      <h2>Welcome back, {{ userinfo.username }}</h2>
-    </div>
-
-    <div class="ui raised segment" *ngIf="userinfo.username">
-      <h2>
-        You can perform actions authorized by the role {{ userinfo.role }}
-      </h2>
+    <div class="ui message" *ngIf="!closedMessage && userinfo.username">
+      <i class="close icon" (click)="toggleMessage()"></i>
+      <div class="header">Welcome back, {{ userinfo.username }} !</div>
+      <p>In this area you can perform all neccesary actions of an admin!.</p>
     </div>
   </div>
 </div>

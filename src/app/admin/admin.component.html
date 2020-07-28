@@ -1,1 +1,7 @@
-<p>admin works!</p>
+<div class="ui message" *ngIf="!closedMessage">
+  <i class="close icon" (click)="toggleMessage()"></i>
+  <div class="header">
+    Welcome back, Admin!
+  </div>
+  <p>In this area you can perform all neccesary actions of an admin!.</p>
+</div>

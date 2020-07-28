@@ -36,6 +36,7 @@
     >
     <a
       class="ui item"
+      routerLink="/admin"
       *ngIf="(isLoggedIn$ | async) == true && (role$ | async) === 'ADMIN'"
       routerLinkActive="active"
       >Admin</a

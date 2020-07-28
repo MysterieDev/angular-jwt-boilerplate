@@ -10,6 +10,7 @@ import { MustMatchDirective } from './components/directives/must-match.directive
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,19 @@ import { FormsModule } from '@angular/forms';
     MustMatchDirective,
     HomeComponent,
   ],
-  imports: [CommonModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserModule,
+  ],
+  exports: [
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserModule,
+  ],
 })
 export class CommonsModule {}

@@ -10,6 +10,7 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  closedMessage = false;
   userinfo: UserInfo;
   constructor(
     private http: HttpClient,
@@ -18,6 +19,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getUserInfo().subscribe((res) => (this.userinfo = res));
+  }
+
+  toggleMessage() {
+    this.closedMessage = !this.closedMessage;
   }
 }
 
