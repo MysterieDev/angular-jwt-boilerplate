@@ -1,7 +1,7 @@
 <div class="ui two column centered grid">
-  <div class="column">
-    <div class="ui raised segment" *ngIf="username">
-      <h2>Welcome back, {{ username }}</h2>
+  <div class="column" *ngIf="userinfo">
+    <div class="ui raised segment" *ngIf="userinfo.username">
+      <h2>Welcome back, {{ userinfo.username }}</h2>
     </div>
   </div>
 </div>
