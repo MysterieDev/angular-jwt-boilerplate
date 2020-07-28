@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { MustMatchDirective } from './commons/components/directives/must-match.directive';
 import { ProfileModule } from './profile/profile.module';
 import { HomeComponent } from './commons/components/home/home.component';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './commons/interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
