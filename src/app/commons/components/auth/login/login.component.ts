@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService
       .login(this.model.username, this.model.password)
-      .subscribe((res) => this.router.navigate(['/profile']));
+      .subscribe((res) =>
+        // TODO: Texts/constants in database and editable by admin, then request text in component by code
+        this.router.navigate(['/profile', { message: 'Welcome back' }])
+      );
   }
 }

@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { BrowserModule } from '@angular/platform-browser';
     RegisterComponent,
     MustMatchDirective,
     HomeComponent,
+    PageNotFoundComponent,
+    MessageComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +39,7 @@ import { BrowserModule } from '@angular/platform-browser';
     HttpClientModule,
     FormsModule,
     BrowserModule,
+    MessageComponent,
   ],
 })
 export class CommonsModule {}

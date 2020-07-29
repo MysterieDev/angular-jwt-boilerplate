@@ -1,16 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UserInfo } from '../profile/components/profile/profile.component';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent {
-  closedMessage = false;
-
-  toggleMessage() {
-    this.closedMessage = !this.closedMessage;
-  }
-}
+export class AdminComponent {}

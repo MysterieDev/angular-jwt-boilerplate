@@ -1,0 +1,9 @@
+<div class="ui column centered grid">
+  <div class="column" *ngIf="message">
+    <div class="ui black message" *ngIf="!closedMessage">
+      <i class="close icon" (click)="toggleMessage()"></i>
+      <div class="header">{{ headline }}</div>
+      <p>{{ message }}</p>
+    </div>
+  </div>
+</div>

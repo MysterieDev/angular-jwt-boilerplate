@@ -1,9 +1,6 @@
-<div class="ui column centered grid">
-  <div class="column" *ngIf="userinfo">
-    <div class="ui message" *ngIf="!closedMessage && userinfo.username">
-      <i class="close icon" (click)="toggleMessage()"></i>
-      <div class="header">Welcome back, {{ userinfo.username }} !</div>
-      <p>This is your personal area!.</p>
-    </div>
-  </div>
+<div *ngIf="userinfo && userinfo.username">
+  <app-message
+    headline="Hello {{ userinfo.username }}"
+    message="{{ message }}"
+  ></app-message>
 </div>
