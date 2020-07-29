@@ -8,13 +8,13 @@ import { LoginGuard } from './commons/guards/login.guard';
 import { AuthGuard } from './commons/guards/auth.guard';
 import { AdminGuard } from './commons/guards/admin.guard';
 import { AdminComponent } from './admin/admin.component';
+import { UsersTableComponent } from './admin/users-table/users-table.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 @NgModule({

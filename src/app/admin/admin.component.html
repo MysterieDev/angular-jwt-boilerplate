@@ -5,3 +5,22 @@
   </div>
   <p>In this area you can perform all neccesary actions of an admin!.</p>
 </div>
+
+<div class="ui grid stackable">
+  <div class="three wide column">
+    <p style="font-weight: bold;">Admin Panel</p>
+
+    <div class="ui secondary vertical menu">
+      <a class="item" routerLink="./users" routerLinkActive="active">
+        All Users
+      </a>
+      <a class="item">
+        Settings
+      </a>
+    </div>
+  </div>
+  <div class="one wide column"></div>
+  <div class="ten wide column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
